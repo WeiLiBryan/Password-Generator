@@ -31,30 +31,34 @@ function generatePassword() {
     correct = criteriaCheck(LC, UC, NU, SP);
   }
 
-  var password = "e";
+  var password = "display";
+  var passwordAdd;
   
-  for (var i = 0; i < length; i++) {
+  for (var i = 0; i < length + 1; i++) {
     // Picks which character to input 1-4
     var randomNumber = Math.floor(Math.random() * 4) + 1;
 
     if (randomNumber === 1 && UC === true) {
-      
+      passwordAdd += upperOptions[Math.floor(Math.random() * upperOptions().length)];
+      console.log(passwordAdd);
     }
 
     else if (randomNumber === 2 && LC === true) {
-      
+      passwordAdd += lowerOptions[Math.floor(Math.random() * lowerOptions().length)];
+      console.log(passwordAdd);
     }
 
     else if (randomNumber === 3 && NU === true) {
-      
+      passwordAdd += numericOptions[Math.floor(Math.random() * numericOptions().length)];
+      console.log(passwordAdd);
     }
 
     else if (randomNumber === 4 && SP === true) {
-      
+      passwordAdd += specialOptions[Math.floor(Math.random() * specialOptions().length)];
+      console.log(passwordAdd);
     }
   }
 
-  console.log(password);
   return password;
   
 }
