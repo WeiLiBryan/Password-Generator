@@ -66,26 +66,26 @@ function generatePassword() {
 
 function upperOptions(){
   var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  upper = splitStr(upper);
-  return upper;
+  var split = splitStr(upper);
+  return split;
 }
 
 function lowerOptions(){
   var lower = "abcdefghijklmnopqrstuvwxyz";
-  lower = splitStr(lower);
-  return lower;
+  var split = splitStr(lower);
+  return split;
 }
 
 function numericOptions(){
   var num = "1234567890";
-  num = splitStr(num);
-  return num;
+  var split = splitStr(num);
+  return split;
 }
 
 function specialOptions(){
   var spe = "!@#$%^&*";
-  spe = splitStr(spe);
-  return spe;
+  var split = splitStr(spe);
+  return split;
 }
 
 // // Gives possible options for password
