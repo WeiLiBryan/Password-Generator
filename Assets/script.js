@@ -22,11 +22,49 @@ function passLength() {
   } else if (chars.length > 128) {
     alert("Must be less than 128 characters");
   } else {
-    // Next checks user criteria
-    criteria(chars);
+    // Returns length of password
+    charsLength = chars.length;
+    return charsLength;
   }
 }
 
+// Prompts and returns lowercase bool value
+function lowerCase() {
+  var lowerC = confirm("Would you like lowercase characters?");
+  return lowerC;
+}
+
+// Prompts and returns uppercase bool value
+function upperCase() {
+  var upperC = confirm("Would you like uppercase characters?");
+  return upperC;
+}
+
+// Prompts and returns numeric bool value
+function numeric() {
+  var num = confirm("Would you like to use numerics?");
+  return num;
+}
+
+// Prompts and returns special char bool value
+function special() {
+  var spe = confirm("Would you like to use special characters?");
+  return spe;
+}
+
+function criteriaCheck() {
+  if (lowerCase() === false && upperCase() === false && numeric() === false && special() === false) {
+    alert("Must have at least one criteria");
+    // Repeats prompts
+    lowerCase();
+    upperCase();
+    numeric();
+    special();
+  }
+  else {
+    return false;
+  }
+}
 // Prompts user criteria for password
 function criteria(chars) {
   var lowerC = confirm("Would you like lowercase characters?");
@@ -37,26 +75,26 @@ function criteria(chars) {
   // At least one value must be true.
   if (lowerC === false && upperC === false && numeric === false && special === false) {
     alert("Must have at least one criteria");
-    // Repeats promtps
+    // Repeats prompts
     criteria();
   }
   else {
-    passwordGeneration(lowerC, upperC, numeric, special, chars)
+    
   }
 }
 
-function passwordGeneration(lowerC, upperC, numeric, special, chars) {
-  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  splitStr(upper);
+function criteriaOptions() {
+  var upperOp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  splitStr(upperOp);
 
-  var lower = "abcdefghijklmnopqrstuvwxyz";
-  splitStr(lower);
+  var lowerOp = "abcdefghijklmnopqrstuvwxyz";
+  splitStr(lowerOp);
 
-  var nums = "1234567890";
-  splitStr(lower);
+  var numericOp = "1234567890";
+  splitStr(numericOp);
   
-  var ch = "!@#$%^&*";
-  splitStr(ch);
+  var charOp = "!@#$%^&*";
+  splitStr(charOp);
 }
 
 // Splits given strings
