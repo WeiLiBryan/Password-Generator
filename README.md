@@ -17,7 +17,7 @@ None
 
 ## Website Appearance
 
-![Index](./Assets/images/demo.png))
+![Index](./Assets/images/demo.png)
 
 
 ## Deployed Link
@@ -25,16 +25,30 @@ https://weilibryan.github.io/Password-Generator/
 
 ## Code Snippet
 ```
-    // var declaration for looping criteria check
-  var correct = true;
-    // Prompts criteria and repeats if all are false
-  while (correct === true) {
-    var LC = lowerCase();
-    var UC = upperCase();
-    var NU = numeric();
-    var SP = special();
-    correct = criteriaCheck(LC, UC, NU, SP);
-  }
+    while (password.length < length) {
+        // Picks which character to input 1-4
+        var roll = diceRoll();
+
+        if (roll === 1 && UC === true) {
+        password += up[Math.floor(Math.random() * up.length)];
+        console.log(password);
+        }
+
+        else if (roll === 2 && LC === true) {
+        password += low[Math.floor(Math.random() * low.length)];
+        console.log(password);
+        }
+
+        else if (roll === 3 && NU === true) {
+        password += numer[Math.floor(Math.random() * numer.length)];
+        console.log(password);
+        }
+
+        else if (roll === 4 && SP === true) {
+        password += spec[Math.floor(Math.random() * spec.length)];
+        console.log(password);
+        }
+    }
 ```
 
 ## Authors
