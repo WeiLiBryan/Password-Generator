@@ -24,7 +24,7 @@ None
 https://weilibryan.github.io/Password-Generator/
 
 ## Code Snippet
-`
+```
     // var declaration for looping criteria check
   var correct = true;
     // Prompts criteria and repeats if all are false
@@ -35,7 +35,7 @@ https://weilibryan.github.io/Password-Generator/
     var SP = special();
     correct = criteriaCheck(LC, UC, NU, SP);
   }
-`
+```
 
 ## Authors
 
