@@ -4,7 +4,7 @@
 
 Application will generate a random password with different characters defined by the user.
 
-## Prerequites
+## Prerequisites
 
 None
 

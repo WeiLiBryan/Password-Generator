@@ -1,6 +1,5 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var cardBody = document.querySelector("#cardbody");
 var passwordTextBox = document.querySelector("#password");
 
 
@@ -18,44 +17,53 @@ function writePassword() {
 // Generates the password
 function generatePassword() {
   // Set pass length
-  length = passLength();
+  var length = passLength();
 
   // var declaration for looping criteria check
   var correct = true;
-    // Prompts criteria and repeats if all are false
+  
+  // Declaring vars for loop
+  var LC, UC, NU, SP;
+  // Prompts criteria and repeats if all are false
   while (correct === true) {
-    var LC = lowerCase();
-    var UC = upperCase();
-    var NU = numeric();
-    var SP = special();
+    LC = lowerCase();
+    UC = upperCase();
+    NU = numeric();
+    SP = special();
     correct = criteriaCheck(LC, UC, NU, SP);
   }
 
-  var password = "display";
-  var passwordAdd;
+  // Points toward possible options
+  var up = upperOptions();
+  var low = lowerOptions();
+  var numer = numericOptions();
+  var spec = specialOptions();
   
-  for (var i = 0; i < length + 1; i++) {
+  var password = "";
+
+  // Repeats until password length is the same as user specified
+  while (password.length < length) {
     // Picks which character to input 1-4
-    var randomNumber = Math.floor(Math.random() * 4) + 1;
+    var roll = diceRoll();
 
-    if (randomNumber === 1 && UC === true) {
-      passwordAdd += upperOptions[Math.floor(Math.random() * upperOptions().length)];
-      console.log(passwordAdd);
+    if (roll === 1 && UC === true) {
+      password += up[Math.floor(Math.random() * up.length)];
+      console.log(password);
     }
 
-    else if (randomNumber === 2 && LC === true) {
-      passwordAdd += lowerOptions[Math.floor(Math.random() * lowerOptions().length)];
-      console.log(passwordAdd);
+    else if (roll === 2 && LC === true) {
+      password += low[Math.floor(Math.random() * low.length)];
+      console.log(password);
     }
 
-    else if (randomNumber === 3 && NU === true) {
-      passwordAdd += numericOptions[Math.floor(Math.random() * numericOptions().length)];
-      console.log(passwordAdd);
+    else if (roll === 3 && NU === true) {
+      password += numer[Math.floor(Math.random() * numer.length)];
+      console.log(password);
     }
 
-    else if (randomNumber === 4 && SP === true) {
-      passwordAdd += specialOptions[Math.floor(Math.random() * specialOptions().length)];
-      console.log(passwordAdd);
+    else if (roll === 4 && SP === true) {
+      password += spec[Math.floor(Math.random() * spec.length)];
+      console.log(password);
     }
   }
 
@@ -63,63 +71,56 @@ function generatePassword() {
   
 }
 
+// Chooses a random number from 1-4
+function diceRoll() {
+  var randomNumber = Math.floor(Math.random() * 4) + 1;
+  return randomNumber;
+}
 
+// Options if uppercase is enabled
 function upperOptions(){
-  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var split = splitStr(upper);
-  return split;
+  var upper = [
+    "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"
+  ];
+  return upper;
 }
 
+// Options if lowercase is enabled
 function lowerOptions(){
-  var lower = "abcdefghijklmnopqrstuvwxyz";
-  var split = splitStr(lower);
-  return split;
+  var lower = [ 
+    "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+  ];
+  return lower;
 }
 
+// Options if numeric is enabled
 function numericOptions(){
-  var num = "1234567890";
-  var split = splitStr(num);
-  return split;
+  var num = [
+  "1", "2", "3", "4", "5", "6", "7", "8", "9", "0"
+  ];
+  return num;
 }
 
+// Options if special characters is enabled
 function specialOptions(){
-  var spe = "!@#$%^&*";
-  var split = splitStr(spe);
-  return split;
-}
-
-// // Gives possible options for password
-// function criteriaOptions() {
-//   var options = [
-//     upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-//     lower = "abcdefghijklmnopqrstuvwxyz",
-//     num = "1234567890",
-//     spe = "!@#$%^&*"
-//   ]
-//   return options;
-// }
-
-// Splits given strings
-function splitStr(str) {
-  str.split("");
+  var spe = [
+    "!", "@", "#", "$", "%", "^", "&", "*"
+  ];
+  return spe;
 }
 
 // Function prompts user to choose password length
 function passLength() {
-  var chars = prompt("How long would you like your password to be? (Characters)");
-  charsInt = parseInt(chars);
-
-  // Length limits
-  if (charsInt < 8) {
-    alert("Must be at least 8 characters.");
+  // Enter pass length
+  var length = Number(prompt("How long do you want your password to be? (8-128 characters)"));
+  
+  // Check length, Restarts function if not within range
+  if (length < 8 || length > 128 || isNaN(length)){
+    alert("Must be 8 - 128 characters");
     passLength();
-  } else if (charsInt > 128) {
-    alert("Must be less than 128 characters");
-    passLength();
-  } else {
-    // Returns length of password
-    charsLength = charsInt.length;
-    return charsLength;
+  }
+  else {
+    return length;
   }
 }
 
