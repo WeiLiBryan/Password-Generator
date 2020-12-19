@@ -14,16 +14,19 @@ function writePassword() {
 
 // Function prompts user to choose password length
 function passLength() {
-  var chars = confirm("How long would you like your password to be?");
+  var chars = prompt("How long would you like your password to be? (Characters)");
+  charsInt = parseInt(chars);
 
   // Length limits
-  if (chars.length < 8) {
+  if (charsInt < 8) {
     alert("Must be at least 8 characters.");
-  } else if (chars.length > 128) {
+    passLength();
+  } else if (charsInt > 128) {
     alert("Must be less than 128 characters");
+    passLength();
   } else {
     // Returns length of password
-    charsLength = chars.length;
+    charsLength = charsInt.length;
     return charsLength;
   }
 }
@@ -52,49 +55,49 @@ function special() {
   return spe;
 }
 
+// Checks if all criteria returns false
 function criteriaCheck() {
   if (lowerCase() === false && upperCase() === false && numeric() === false && special() === false) {
     alert("Must have at least one criteria");
-    // Repeats prompts
-    lowerCase();
-    upperCase();
-    numeric();
-    special();
-  }
-  else {
     return false;
   }
-}
-// Prompts user criteria for password
-function criteria(chars) {
-  var lowerC = confirm("Would you like lowercase characters?");
-  var upperC = confirm("Would you like uppercase characters?");
-  var numeric = confirm("Would you like to use numerics?");
-  var special = confirm("Would you like to use special characters?");
-
-  // At least one value must be true.
-  if (lowerC === false && upperC === false && numeric === false && special === false) {
-    alert("Must have at least one criteria");
-    // Repeats prompts
-    criteria();
-  }
   else {
-    
+    return true;
   }
 }
 
 function criteriaOptions() {
   var upperOp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  splitStr(upperOp);
+  upperOp = splitStr(upperOp);
 
   var lowerOp = "abcdefghijklmnopqrstuvwxyz";
-  splitStr(lowerOp);
+  lowerOp = splitStr(lowerOp);
 
   var numericOp = "1234567890";
-  splitStr(numericOp);
+  numericOp = splitStr(numericOp);
   
   var charOp = "!@#$%^&*";
-  splitStr(charOp);
+  charop = splitStr(charOp);
+
+  return upperOp, lowerOp, numericOp, charOp;
+}
+
+// Generates the password
+function generatePassword() {
+  // Set pass length
+  passLength();
+
+  // var declaration for looping criteria check
+  var cont = true;
+    // Prompts criteria and repeats if all are false
+  while (cont === true) {
+    lowerCase();
+    upperCase();
+    numeric();
+    special();
+    cont = criteriaCheck();
+  }
+
 }
 
 // Splits given strings
