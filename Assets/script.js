@@ -1,6 +1,7 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 var cardBody = document.querySelector("#cardbody");
+var passwordTextBox = document.querySelector("#password");
 
 
 // Write password to the #password input
@@ -9,6 +10,8 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
+
+  passwordTextBox.innerHTML = passwordText.value;
 
 }
 
@@ -28,14 +31,73 @@ function generatePassword() {
     correct = criteriaCheck(LC, UC, NU, SP);
   }
 
-  var password;
-  // Checks what user asked
-  for (i = 0; i == length; i++){
-    if (LC === true){
+  var password = "e";
+  
+  for (var i = 0; i < length; i++) {
+    // Picks which character to input 1-4
+    var randomNumber = Math.floor(Math.random() * 4) + 1;
+
+    if (randomNumber === 1 && UC === true) {
+      
+    }
+
+    else if (randomNumber === 2 && LC === true) {
+      
+    }
+
+    else if (randomNumber === 3 && NU === true) {
+      
+    }
+
+    else if (randomNumber === 4 && SP === true) {
       
     }
   }
 
+  console.log(password);
+  return password;
+  
+}
+
+
+function upperOptions(){
+  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  upper = splitStr(upper);
+  return upper;
+}
+
+function lowerOptions(){
+  var lower = "abcdefghijklmnopqrstuvwxyz";
+  lower = splitStr(lower);
+  return lower;
+}
+
+function numericOptions(){
+  var num = "1234567890";
+  num = splitStr(num);
+  return num;
+}
+
+function specialOptions(){
+  var spe = "!@#$%^&*";
+  spe = splitStr(spe);
+  return spe;
+}
+
+// // Gives possible options for password
+// function criteriaOptions() {
+//   var options = [
+//     upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+//     lower = "abcdefghijklmnopqrstuvwxyz",
+//     num = "1234567890",
+//     spe = "!@#$%^&*"
+//   ]
+//   return options;
+// }
+
+// Splits given strings
+function splitStr(str) {
+  str.split("");
 }
 
 // Function prompts user to choose password length
@@ -91,25 +153,6 @@ function criteriaCheck(LC, UC, NU, SP) {
     return false;
   }
 }
-
-// Splits given strings
-function splitStr(str) {
-  str.split("");
-}
-
-// Gives possible options for password
-function criteriaOptions() {
-  var options = [
-    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-    "abcdefghijklmnopqrstuvwxyz",
-    "1234567890",
-    "!@#$%^&*"
-  ]
-
-  return options;
-}
-
-
 
 
 
