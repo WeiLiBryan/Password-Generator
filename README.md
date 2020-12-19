@@ -17,7 +17,7 @@ None
 
 ## Website Appearance
 
-![Index](./assets/images/demo.png))
+![Index](./Assets/images/demo.png))
 
 
 ## Deployed Link
