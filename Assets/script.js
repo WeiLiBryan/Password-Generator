@@ -12,6 +12,32 @@ function writePassword() {
 
 }
 
+// Generates the password
+function generatePassword() {
+  // Set pass length
+  length = passLength();
+
+  // var declaration for looping criteria check
+  var correct = true;
+    // Prompts criteria and repeats if all are false
+  while (correct === true) {
+    var LC = lowerCase();
+    var UC = upperCase();
+    var NU = numeric();
+    var SP = special();
+    correct = criteriaCheck(LC, UC, NU, SP);
+  }
+
+  var password;
+  // Checks what user asked
+  for (i = 0; i == length; i++){
+    if (LC === true){
+      
+    }
+  }
+
+}
+
 // Function prompts user to choose password length
 function passLength() {
   var chars = prompt("How long would you like your password to be? (Characters)");
@@ -56,54 +82,36 @@ function special() {
 }
 
 // Checks if all criteria returns false
-function criteriaCheck() {
-  if (lowerCase() === false && upperCase() === false && numeric() === false && special() === false) {
+function criteriaCheck(LC, UC, NU, SP) {
+  if (LC === false && UC === false && NU === false && SP === false) {
     alert("Must have at least one criteria");
-    return false;
-  }
-  else {
     return true;
   }
-}
-
-function criteriaOptions() {
-  var upperOp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  upperOp = splitStr(upperOp);
-
-  var lowerOp = "abcdefghijklmnopqrstuvwxyz";
-  lowerOp = splitStr(lowerOp);
-
-  var numericOp = "1234567890";
-  numericOp = splitStr(numericOp);
-  
-  var charOp = "!@#$%^&*";
-  charop = splitStr(charOp);
-
-  return upperOp, lowerOp, numericOp, charOp;
-}
-
-// Generates the password
-function generatePassword() {
-  // Set pass length
-  passLength();
-
-  // var declaration for looping criteria check
-  var cont = true;
-    // Prompts criteria and repeats if all are false
-  while (cont === true) {
-    lowerCase();
-    upperCase();
-    numeric();
-    special();
-    cont = criteriaCheck();
+  else {
+    return false;
   }
-
 }
 
 // Splits given strings
 function splitStr(str) {
   str.split("");
 }
+
+// Gives possible options for password
+function criteriaOptions() {
+  var options = [
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    "abcdefghijklmnopqrstuvwxyz",
+    "1234567890",
+    "!@#$%^&*"
+  ]
+
+  return options;
+}
+
+
+
+
 
 
 // Add event listener to generate button
