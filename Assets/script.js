@@ -23,12 +23,12 @@ function passLength() {
     alert("Must be less than 128 characters");
   } else {
     // Next checks user criteria
-    criteria();
+    criteria(chars);
   }
 }
 
 // Prompts user criteria for password
-function criteria() {
+function criteria(chars) {
   var lowerC = confirm("Would you like lowercase characters?");
   var upperC = confirm("Would you like uppercase characters?");
   var numeric = confirm("Would you like to use numerics?");
@@ -41,8 +41,27 @@ function criteria() {
     criteria();
   }
   else {
-    
+    passwordGeneration(lowerC, upperC, numeric, special, chars)
   }
+}
+
+function passwordGeneration(lowerC, upperC, numeric, special, chars) {
+  var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  splitStr(upper);
+
+  var lower = "abcdefghijklmnopqrstuvwxyz";
+  splitStr(lower);
+
+  var nums = "1234567890";
+  splitStr(lower);
+  
+  var ch = "!@#$%^&*";
+  splitStr(ch);
+}
+
+// Splits given strings
+function splitStr(str) {
+  str.split("");
 }
 
 
